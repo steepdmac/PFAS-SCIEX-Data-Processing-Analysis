@@ -4,6 +4,7 @@ example_data_processed/*
 .ipynb_checkpoints/*
 .vscode/*
 analyze_calcurve.ipynb
+prepare_raw_data_for_analysis.ipynb
 __pycache__/*
 taylor
 rachel
@@ -17,6 +18,8 @@ jitka
 justin
 paola
 simon
+bella
+veronia
 test/sciex/processed_data
 test/sciex/code_parameters
 test/waters/processed_data

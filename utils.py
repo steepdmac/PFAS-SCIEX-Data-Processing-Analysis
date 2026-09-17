@@ -44,12 +44,14 @@ def convert_waters_to_sciex(data: pd.DataFrame, hrms_identifier: str) -> pd.Data
     data['IS Name'] = data['IS Name'].replace({
         'Avg 13C2_PFDoA 13C2_PFTeDA': 'EIS-Avg_13C2_PFDoA_13C2_PFTeDA',
         })
+
+    data.loc[data['Component Name'] == 'EIS-Avg_13C2_PFDoA_13C2_PFTeDA', 'IS Name'] = 'NIS-13C2_PFDA'
     
     # convert "Used" column to boolean
     data["Used"] = data["Used"].eq("Yes")
 
     # make sure all internal standards are included in calibration and final data set (Used=True)
-    data.loc[data['Compound Type'] == 'Internal Standard', 'Used'] = True
+    data.loc[data['Compound Type'].isin(['Internal Standard', 'Composite Internal Standard']), 'Used'] = True
 
     # all standards which are linked to a target compound not used for calibration, should be set to Used=False
     for idx, row in data.iterrows():
@@ -110,6 +112,7 @@ def convert_waters_to_sciex(data: pd.DataFrame, hrms_identifier: str) -> pd.Data
 
     # Add Component Group Name
     out["Component Group Name"] = out["IS Name"]
+
     return out
 
 

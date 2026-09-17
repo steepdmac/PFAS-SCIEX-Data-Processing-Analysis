@@ -41,16 +41,6 @@ def calculate_idls(
         'Actual Concentration', 'Component Name', 'Used', 'Signal / Noise'
     ]
 
-    if data_format == 'waters':
-        columns_considered = columns_considered + ['Sample Description']
-        column_for_point_selection = 'Sample Description'
-    elif data_format == 'sciex':
-        column_for_point_selection = 'Sample ID'
-    else:
-        raise NameError(
-                f"The data format {data_format} is not available. Please choose either 'sciex' or 'waters'."
-                ) 
-
     if filepath_core is not None:
         # Read core data
         if filepath_core.endswith('.csv'):
@@ -147,12 +137,12 @@ def calculate_idls(
         min_idl = 1e-3
         for calibration_point in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
             previous = msms_data.loc[(
-                (msms_data[column_for_point_selection].str.contains(f'CS{calibration_point}')) &
+                (msms_data['Sample ID'].str.contains(f'CS{calibration_point}')) &
                 (msms_data['Used'] == True)
             ), :]
             if previous['Signal / Noise'].isna().sum() == 0:
                 this_point = msms_data.loc[(
-                    (msms_data[column_for_point_selection].str.contains(f'CS{calibration_point + 1}')) &
+                    (msms_data['Sample ID'].str.contains(f'CS{calibration_point + 1}')) &
                     (msms_data['Used'] == True)
                 ), :]
                 idl = 3 * this_point['Actual Concentration'].mean() / this_point['Signal / Noise'].mean()
@@ -165,12 +155,12 @@ def calculate_idls(
         min_idl = 1e-3
         for calibration_point in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
             previous = hrms_data.loc[(
-                (hrms_data[column_for_point_selection].str.contains(f'CS{calibration_point}')) &
+                (hrms_data['Sample ID'].str.contains(f'CS{calibration_point}')) &
                 (hrms_data['Used'] == True)
             ), :]
             if previous['Signal / Noise'].isna().sum() == 0:
                 this_point = hrms_data.loc[(
-                    (hrms_data[column_for_point_selection].str.contains(f'CS{calibration_point + 1}')) &
+                    (hrms_data['Sample ID'].str.contains(f'CS{calibration_point + 1}')) &
                     (hrms_data['Used'] == True)
                 ), :]
                 idl = 3 * this_point['Actual Concentration'].mean() / this_point['Signal / Noise'].mean()
@@ -192,9 +182,9 @@ def calculate_idls(
 
 if __name__ == "__main__":
     calculate_idls(
-        method_name='2025_water_anonymous',
-        hrms_identifier='_HRMS',
-        data_format='sciex',
-        filepath_core=r'julie/water/20251123_Water_India_core.txt',
-        filepath_extended=r'julie/water/20251123_Water_India_extended.txt',
+        method_name='2026_watersepa_simon',
+        hrms_identifier='_Qual',
+        data_format='waters',
+        filepath_core=r'simon/EPA_fish/260908_Lake_Trout/Lake_Trout_concentration_no_nis/wet/20260902_EPA_PFAS_Lake_Trout_no NIS_concentration_wet_core.csv',
+        filepath_extended= None # r'julie/water/20251123_Water_India_extended.txt',
     )
