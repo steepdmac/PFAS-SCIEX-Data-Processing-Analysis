@@ -385,7 +385,7 @@ def clean_up_data(data: pd.DataFrame, sample_list: pd.DataFrame) -> pd.DataFrame
     data['Calculated Concentration'] = data['Calculated Concentration'].replace({
         '<1 points': 0, '< 0': 0, 'no root': np.nan, 'NaN': np.nan, 'degenerate': np.nan, 
         'two roots': np.nan, 'Not Detected': 0, 'Not calculated': np.nan, 'BLoQ':np.nan
-        }).astype(str).str.extract(r"([\d.]+)")[0].astype(float)
+        }).astype(str).str.extract(r"([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)")[0].astype(float)
     
     # Correct channel names in original data (all of the TOF channels are labelled by _TOF MS, only 2 of them are labeled by only _TOF)
     mask_names = data['Component Name'].str.endswith('_TOF')
