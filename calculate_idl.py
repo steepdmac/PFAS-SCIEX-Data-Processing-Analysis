@@ -182,9 +182,9 @@ def calculate_idls(
 
 if __name__ == "__main__":
     calculate_idls(
-        method_name='2026_watersepa_simon',
+        method_name='2026_waters4412_simon',
         hrms_identifier='_Qual',
         data_format='waters',
-        filepath_core=r'simon/EPA_fish/260908_Lake_Trout/Lake_Trout_concentration_no_nis/wet/20260902_EPA_PFAS_Lake_Trout_no NIS_concentration_wet_core.csv',
+        filepath_core=r'paola/oysters/Trial6/raw_data/20260921_Oysters_QuEChERS_Trial6_no_NIS.csv',
         filepath_extended= None # r'julie/water/20251123_Water_India_extended.txt',
     )
