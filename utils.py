@@ -775,7 +775,7 @@ def round_to_n_sigfigs(x: float, n: int) -> float:
     """    
     if x == 0:
         return 0.0
-    if np.isnan(x):
+    if np.isnan(x) or np.isinf(x):
         return np.nan
     return round(x, -int(floor(log10(abs(x)))) + (n - 1))
 
