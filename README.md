@@ -38,7 +38,7 @@ Both notebooks `create_project_folder.ipynb` and `data_analysis.ipynb` rely on:
 Ensure these are stored together if downloaded manually.
 
 ### Input Data & Naming Conventions
-Input files must come from **SCIEX Analyst** exported tables. These are either .csv or .txt files.
+Input files must come from **SCIEX Analyst** exported tables or **Waters Connect**. These are either .csv or .txt files.
 
 Files must end with:
 - `_core` → data from the core method  
@@ -65,8 +65,17 @@ You may run the pipeline in:
 | **Extracted Internal Standards (EIS)** | Mass-labeled standards added **before extraction** (formerly *IDA*). |
 | **Non-Extracted Internal Standards (NIS)** | Standards added **after extraction**, before injection (also *IPS*). |
 | **Target analytes** | PFAS native compounds quantified by LC-MS/MS. |
-| **HRMS channel** | High-resolution TOF channel used to confirm native ions. |
-| **MS/MS channel** | Fragmentation channel used for quantification. |
+| **HRMS channel** | High-resolution TOF channel used to confirm native ions. For triple quad (mass spec) it is the confirmation channel.|
+| **MS/MS channel** | Fragmentation channel used for quantification. Also known as quantitation channel.|
+
+### Video Tutorials
+|Title|Link|
+|------|-------------|
+| **Overview** | [Youtube Link](https://youtu.be/pYqSxKKX_-k?si=4iWsj2EZ3F4vb5WO) |
+| **What is Code?** | [Youtube link](https://youtu.be/A4K5VRTIwlY?si=dAjfHoLblOjD-Czn)|
+| **QA/QC Briefing** | [Youtube Link](https://youtu.be/OOGTGDluwRA?si=0UdOD9ScEpyWxlNk)|
+| **Step by step instruction (for Sciex data)** | [Youtube Link](https://youtu.be/A4K5VRTIwlY?si=dAjfHoLblOjD-Czn)|
+| **Processing Waters data** | [Youtube Link](https://youtu.be/5bKdysppm-g?si=qsjoTaqhd9vVQP6-)|
 
 ### Contact
 johanna.ganglbauer@uri.edu
